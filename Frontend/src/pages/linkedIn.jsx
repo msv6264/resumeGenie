@@ -1,12 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import dice from "../assets/dice.png";
 import spiB from "../assets/spiralBall.png";
 import flower from "../assets/flower.png";
-import { FaUpload } from "react-icons/fa"; // install if not already
+import { FaUpload } from "react-icons/fa";
+// import PropTypes from 'prop-types';
+// import { ImageConfig } from '../config/ImageConfig.jsx';
+import axios from "axios";
 
-export default function linkedIn() {
+export default function LinkedIn() {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [hasSelectedFile, setHasSelectedFile] = useState(false);
+
+  const [dragged, setDragged] = useState(false);
+
+  const onFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      setHasSelectedFile(true);
+      console.log(file);
+    }
+  };
+
+  const onFileUpload = () => {
+    const formData = new FormData();
+    formData.append("zipFile", selectedFile);
+    console.log(selectedFile);
+    // implement post axios to send file to backend (later)
+  };
+
   return (
-    <div className="bg-radial-grad2 min-h-screen w-full relative overflow-hidden flex flex-row">
+    <div
+      className={`bg-radial-grad2 min-h-screen w-full relative overflow-hidden flex flex-row ${
+        dragged ? "opacity-60" : ""
+      }`}
+      onDragEnter={() => setDragged(true)}
+      onDragLeave={() => setDragged(false)}
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={(e) => {
+        e.preventDefault();
+        setDragged(false);
+        const file = e.dataTransfer.files[0];
+        // for onclick type functions e.target is used for drag, drop functions e.dataTransfer is used
+        if(file){
+          hasSelectedFile(true);
+          setSelectedFile(file);
+          console.log(file);
+        }
+      }}
+    >
       {/* Left image column */}
       <div className="w-[20%] flex justify-center items-start pt-[10%]">
         <img
@@ -33,11 +75,43 @@ export default function linkedIn() {
                 <FaUpload className="text-white text-4xl" />
               </div>
             </div>
-            <p className="text-[18px] font-medium text-white">
-              Drop or upload your zip file here
-            </p>
+            <div className="flex flex-wrap justify-center items-center gap-2 text-[16px] font-medium text-white">
+              <span>Drop or</span>
+
+              <input
+                type="file"
+                id="zipUpload"
+                accept=".zip"
+                onChange={onFileChange}
+                className="hidden"
+              />
+
+              <label
+                htmlFor="zipUpload"
+                className="bg-[#AE4BFF] text-white px-3 py-1 rounded-md cursor-pointer hover:bg-[#912ed8] transition"
+              >
+                choose a file
+              </label>
+
+              {selectedFile && (
+                <span className="text-[12px] italic truncate max-w-[180px] overflow-hidden">
+                  file choosen: {selectedFile.name}
+                </span>
+              )}
+
+              <span>your zip file here</span>
+            </div>
           </div>
         </div>
+
+        <button
+          disabled={!hasSelectedFile}
+          className={`w-[30%] mt-3 p-3 text-white rounded-full border shadow-glow-inset border-white/20 hover:bg-[#35334D] text-lg font-semibold
+        ${!hasSelectedFile ? "opacity-50 cursor-not-allowed" : ""} `}
+          onClick={onFileUpload}
+        >
+          Send to genie
+        </button>
       </div>
 
       {/* Right image column */}
