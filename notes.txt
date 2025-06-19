@@ -1,0 +1,48 @@
+education.csv => education details
+School nmae, Start Date, End Date, Degree Activities
+
+certifications.csv => certificates uploaded by the user
+Name -> name of certificate, Authority -> company which issued certificate, Started On -> date
+
+email addresses.csv => all email addresses
+Email Address
+
+projects.csv => all projects done by user
+
+
+profile.csv => name, headline, summary, industry, location, websites
+
+positions => all internsips or freelancing done
+phone number.csv => phone numbers
+
+🎓 Education
+👉 Place this section below work experience unless you’re a recent graduate.
+📌 Include for each degree:
+🏫 School Name
+📍 Location
+🎓 Degree Obtained
+📘 Field of Study
+
+📌 If you're a recent graduate, also include:
+📅 Dates Attended or 🎉 Graduation Date
+📈 GPA (only if it's above 3.50)
+🏅 Honors / Achievements
+📚 Relevant Coursework
+🌍 Study Abroad Programs
+🤝 Extracurricular Activities
+
+📜 Certifications
+🎯 Use a dedicated section or add as a subsection under Education.
+📌 Include for each certification:
+🏅 Certification Name
+🏛️ Awarding Institution
+📆 Date Earned
+⏳ Expiration Date (if applicable)
+🛠️ Relevant Skills
+
+💼 Skills
+🧠 Optional, especially if skills are shown throughout work experience.
+✅ If you include a Skills section, add it at the end and list:
+🧰 Technical Skills (e.g., HTML, React, Python)
+👥 Workplace Skills (e.g., Communication, Teamwork, Leadership)
+📌 Keep it simple and relevant to the job role!

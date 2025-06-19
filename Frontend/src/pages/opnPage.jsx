@@ -11,6 +11,12 @@ const navigate = useNavigate();
       {/* Left image column */}
       <div className='w-[20%] flex justify-center items-start pt-[10%]'>
         <img className='w-[180px] absolute top-[47%] left-1 ' src={dice} alt="Dice" />
+        <button
+          className={`w-[30%] mr-[40%] mt-[-30%] p-3 text-white rounded-[12px] border shadow-glow-inset border-white/20 hover:bg-[#35334D] text-lg font-semibold `}
+          onClick={() => navigate("/")}
+        >
+          Back
+        </button>
       </div>
 
       {/* Center content */}

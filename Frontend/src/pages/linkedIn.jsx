@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import dice from "../assets/dice.png";
 import spiB from "../assets/spiralBall.png";
 import flower from "../assets/flower.png";
@@ -8,6 +9,8 @@ import { FaUpload } from "react-icons/fa";
 import axios from "axios";
 
 export default function LinkedIn() {
+  const navigate = useNavigate();
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [hasSelectedFile, setHasSelectedFile] = useState(false);
 
@@ -25,9 +28,24 @@ export default function LinkedIn() {
   const onFileUpload = () => {
     const formData = new FormData();
     formData.append("zipFile", selectedFile);
-    console.log(selectedFile);
-    // implement post axios to send file to backend (later)
-  };
+  
+    console.log("Uploading file:", selectedFile);
+  
+    axios.post("http://127.0.0.1:5000/data", formData)
+      .then((response) => {
+        console.log("Upload successful:", response.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error("❌ Backend Error:", error.response.data);
+          console.error("📟 Status Code:", error.response.status);
+        } else if (error.request) {
+          console.error("❗ No response received from server. Request sent:", error.request);
+        } else {
+          console.error("🚨 Axios error:", error.message);
+        }
+      });
+  };  
 
   return (
     <div
@@ -43,7 +61,7 @@ export default function LinkedIn() {
         const file = e.dataTransfer.files[0];
         // for onclick type functions e.target is used for drag, drop functions e.dataTransfer is used
         if(file){
-          hasSelectedFile(true);
+          setHasSelectedFile(true);
           setSelectedFile(file);
           console.log(file);
         }
@@ -56,6 +74,12 @@ export default function LinkedIn() {
           src={dice}
           alt="Dice"
         />
+        <button
+          className={`w-[30%] mr-[40%] mt-[-30%] p-3 text-white rounded-[12px] border shadow-glow-inset border-white/20 hover:bg-[#35334D] text-lg font-semibold `}
+          onClick={() => navigate("/opnPage")}
+        >
+          Back
+        </button>
       </div>
 
       {/* Center content */}
