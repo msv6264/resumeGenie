@@ -27,7 +27,7 @@ export default function LinkedIn() {
 
   const onFileUpload = () => {
     const formData = new FormData();
-    formData.append("zipFile", selectedFile);
+    formData.append("zF", selectedFile);
   
     console.log("Uploading file:", selectedFile);
   
