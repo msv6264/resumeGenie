@@ -1,6 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import zipfile
+import csv, os, io
+from dotenv import load_dotenv
+import cohere
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
@@ -18,28 +21,20 @@ def receiveZip():
     zip_file = zipfile.ZipFile(my_upload)
 
     reqFiles = {
-        "Education.csv", "Certifications.csv", "Skills.csv", "PhoneNumbers.csv",
-        "Email Addresses.csv", "Profile.csv", "Projects.csv", "Positions.csv"
+        "Profile.csv", "Projects.csv", "Positions.csv", "Skills.csv", "Education.csv", "Certifications.csv", "Email Addresses.csv", "PhoneNumbers.csv"
     }
 
-    presentFiles = set(zip_file.namelist())
+    userData = {}
+    for csvFile in reqFiles:
+        if csvFile in zip_file.namelist():
+            with zip_file.open(csvFile) as cFile:
+                reader = csv.reader(io.TextIOWrapper(cFile, encoding='utf-8'))
+                fileData = [row for row in reader]
+                userData[csvFile] = fileData
+        else:
+            userData[csvFile] = []
 
-    found_files = reqFiles.intersection(presentFiles)
-    missing_files = reqFiles - found_files
-
-    try:
-        education_data = zip_file.read("Education.csv").decode('utf-8')
-        return jsonify({"data_in_education_csv": education_data})
-    except KeyError:
-        return jsonify({"error": "Education.csv not found in ZIP"}), 400
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-    return jsonify({
-        "found_files": list(found_files),
-        "missing_files": list(missing_files),
-        "total_files_in_zip": list(presentFiles)
-    })
+    return jsonify(userData)
 
 if __name__ == '__main__':
     app.run(debug=True)

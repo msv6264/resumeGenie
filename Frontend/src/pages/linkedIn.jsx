@@ -70,7 +70,7 @@ export default function LinkedIn() {
       {/* Left image column */}
       <div className="w-[20%] flex justify-center items-start pt-[10%]">
         <img
-          className="w-[190px] absolute top-[45%] left-1"
+          className="w-[90px] small:w-[135px] ms:w-[190px] absolute top-[64%] small:top-[53%] ms:top-[45%] left-1"
           src={dice}
           alt="Dice"
         />
@@ -84,8 +84,8 @@ export default function LinkedIn() {
 
       {/* Center content */}
       <div className="w-[60%] flex flex-col justify-center items-center text-white px-4">
-        <div className="shadow-glow-inset2 rounded-[30px] border border-white/20 p-12 w-[90%] max-w-[700px] bg-radial-grad3 ">
-          <p className="text-center text-[20px] md:text-[22px] font-semibold mb-10 leading-8">
+        <div className="shadow-glow-inset2 rounded-[30px] border border-white/20 p-12  small:h-[60%] md:h-[65%] w-[90%] max-w-[700px] bg-radial-grad3 ">
+          <p className="text-center text-[13px] small:text-[17px] ms:text-[22px] font-semibold mb-10 leading-8">
             Go to your LinkedIn profile <br className="md:hidden" />
             <span className="hidden md:inline"> &gt; </span> Settings{" "}
             <span className="hidden md:inline"> &gt; </span> Data Privacy{" "}
@@ -93,13 +93,13 @@ export default function LinkedIn() {
             data”
           </p>
 
-          <div className="border-dashed border-[2px] border-white/30 rounded-[15px] p-14 text-center">
+          <div className="border-dashed border-[2px] border-white/30 rounded-[15px] small:h-[60%] ms:h-[80%] w-[90%] p-14 text-center mb-3">
             <div className="flex justify-center mb-6">
-              <div className="bg-[#AE4BFF] rounded-full p-6">
-                <FaUpload className="text-white text-4xl" />
+              <div className="bg-[#AE4BFF] rounded-full xs:p-3 lg:p-6">
+                <FaUpload className="text-white xs:text-2xl lg:text-4xl" />
               </div>
             </div>
-            <div className="flex flex-wrap justify-center items-center gap-2 text-[16px] font-medium text-white">
+            <div className="flex flex-wrap justify-center items-center gap-2 text-[16px] small:text-[14px] ms:text-[19px] font-medium text-white">
               <span>Drop or</span>
 
               <input

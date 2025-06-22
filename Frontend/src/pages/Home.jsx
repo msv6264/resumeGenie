@@ -58,7 +58,7 @@ export default function Home() {
 
       {/* Background Decoration (Right) */}
       <img
-        className="w-[140px] sm:w-[200px] md:w-[250px] absolute top-[40%] md:top-[25%] right-3 translate-x-[30%]"
+        className="w-[180px] md:w-[200px] lg:w-[250px] absolute top-[65%] md:top-[50%] lg:top-[25%] right-3 translate-x-[30%]"
         src={vec2}
         alt="vec2"
       />
