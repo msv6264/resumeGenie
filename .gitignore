@@ -1,0 +1,14 @@
+# Ignore virtual environments
+Backend/venv/
+
+# Environment files
+.env
+*.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Node and VSCode stuff
+node_modules/
+.vscode/
